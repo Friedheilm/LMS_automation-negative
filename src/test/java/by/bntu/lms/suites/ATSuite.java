@@ -93,7 +93,25 @@ public class ATSuite extends SuiteBase {
         return dataReaderGeneric(PROFESSOR_DATA_PATH, "ChangeProfessorNameFail");
     }
 
+    @DataProvider()
+    public Object[][] changeProfessorEmptyNameFailData() throws Exception {
+        return dataReaderGeneric(PROFESSOR_DATA_PATH, "ChangeProfessorEmptyNameFail");
+    }
 
+    @DataProvider()
+    public Object[][] changeProfessorEmptySurnameFailData() throws Exception {
+        return dataReaderGeneric(PROFESSOR_DATA_PATH, "ChangeProfessorEmptySurnameFail");
+    }
+
+    @DataProvider()
+    public Object[][] changeProfessorSurnameFailData() throws Exception {
+        return dataReaderGeneric(PROFESSOR_DATA_PATH, "ChangeProfessorSurnameFail");
+    }
+
+    @DataProvider()
+    public Object[][] changeProfessorPatronymicFailData() throws Exception {
+        return dataReaderGeneric(PROFESSOR_DATA_PATH, "ChangeProfessorPatronymicFail");
+    }
 
     @DataProvider()
     public Object[][] searchProfessorData() throws Exception {
@@ -139,6 +157,16 @@ public class ATSuite extends SuiteBase {
     @DataProvider()
     public Object[][] changeGroupEmptyFailData() throws Exception {
         return dataReaderGeneric(GROUP_DATA_PATH, "ChangeGroupEmptyFail");
+    }
+
+    @DataProvider()
+    public Object[][] changeGroupYearFailData() throws Exception {
+        return dataReaderGeneric(GROUP_DATA_PATH, "changeGroupYearFail");
+    }
+
+    @DataProvider()
+    public Object[][] changeGroupExistFailData() throws Exception {
+        return dataReaderGeneric(GROUP_DATA_PATH, "changeGroupExistFail");
     }
 
     @DataProvider()
@@ -212,10 +240,32 @@ public class ATSuite extends SuiteBase {
 
     // Surname exist ?
 
+    @Test(priority = 12, dataProvider = "changeProfessorSurnameFailData")
+    public void changeProfessorSurnameFailTest(TestData testData) throws Exception {
+        new ProfessorFeature(loginPage, ADMIN_LOGIN, ADMIN_PASSWORD).changeProfessorFailTest(testData, "Фамилия не может иметь размер больше 50 символов");
+    }
+
+    @Test(priority = 12, dataProvider = "changeProfessorEmptySurnameFailData")
+    public void changeProfessorEmptySurnameFailTest(TestData testData) throws Exception {
+        new ProfessorFeature(loginPage, ADMIN_LOGIN, ADMIN_PASSWORD).changeProfessorFailTest(testData, "Поле Фамилия обязательно для заполнения");
+    }
+
     @Test(priority = 12, dataProvider = "changeProfessorNameFailData")
     public void changeProfessorNameFailTest(TestData testData) throws Exception {
-        new ProfessorFeature(loginPage, ADMIN_LOGIN, ADMIN_PASSWORD).changeProfessorNameFailTest(testData, "Имя не может иметь размер больше 50 символов");
+        new ProfessorFeature(loginPage, ADMIN_LOGIN, ADMIN_PASSWORD).changeProfessorFailTest(testData, "Имя не может иметь размер больше 50 символов");
     }
+
+    @Test(priority = 12, dataProvider = "changeProfessorEmptyNameFailData")
+    public void changeProfessorEmptyNameFailTest(TestData testData) throws Exception {
+        new ProfessorFeature(loginPage, ADMIN_LOGIN, ADMIN_PASSWORD).changeProfessorFailTest(testData, "Поле Имя обязательно для заполнения");
+    }
+
+    @Test(priority = 12, dataProvider = "changeProfessorPatronymicFailData")
+    public void changeProfessorPatronymicFailTest(TestData testData) throws Exception {
+        new ProfessorFeature(loginPage, ADMIN_LOGIN, ADMIN_PASSWORD).changeProfessorFailTest(testData, "Отчество не может иметь размер больше 50 символов");
+    }
+
+
 
     // Empty name, surname; Long, name, surname, patronymic.
 
@@ -269,6 +319,16 @@ public class ATSuite extends SuiteBase {
     @Test(priority = 4, dataProvider = "changeGroupEmptyFailData")
     public void changeGroupEmptyFailTest(TestData testData) throws Exception {
         new GroupFeature(loginPage, ADMIN_LOGIN, ADMIN_PASSWORD).changeGroupFailTest(testData, "Поле Номер обязательно для заполнения");
+    }
+
+    @Test(priority = 4, dataProvider = "changeGroupYearFailData")
+    public void changeGroupYearFailTest(TestData testData) throws Exception {
+        new GroupFeature(loginPage, ADMIN_LOGIN, ADMIN_PASSWORD).changeGroupFailTest(testData, "Значение поля Год выпуска должен быть больше Года поступления");
+    }
+
+    @Test(priority = 4, dataProvider = "changeGroupExistFailData")
+    public void changeGroupExistFailTest(TestData testData) throws Exception {
+        new GroupFeature(loginPage, ADMIN_LOGIN, ADMIN_PASSWORD).changeGroupFailTest(testData, "Группа с таким номером уже существует");
     }
 
     // Students creation here.

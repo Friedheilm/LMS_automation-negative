@@ -37,7 +37,7 @@ public class ProfessorFeature {
 //    }
 
     @Test()
-    public void changeProfessorNameFailTest(TestData testData, String errorMessage) throws Exception {
+    public void changeProfessorFailTest(TestData testData, String errorMessage) throws Exception {
         loginPage.loginAsAdmin(ADMIN_LOGIN, ADMIN_PASSWORD).chooseProfessorsTab().
                 changeProfessorInformationFail(testData.getLogin(), testData.getChangedName(), testData.getChangedSurname(),
                         testData.getChangedPatronymic(), errorMessage);
