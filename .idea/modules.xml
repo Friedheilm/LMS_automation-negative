@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/corp.automation.taf.iml" filepath="$PROJECT_DIR$/.idea/modules/corp.automation.taf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/corp.automation.taf_main.iml" filepath="$PROJECT_DIR$/.idea/modules/corp.automation.taf_main.iml" group="corp.automation.taf" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/corp.automation.taf_test.iml" filepath="$PROJECT_DIR$/.idea/modules/corp.automation.taf_test.iml" group="corp.automation.taf" />
+    </modules>
+  </component>
+</project>
